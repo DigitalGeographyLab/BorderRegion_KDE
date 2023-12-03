@@ -1,0 +1,12 @@
+*.csv
+src/extra_and_alternative_code/*
+src/output_folder/*
+*.parquet
+poetry.lock
+src/geopackages/*
+src/distances/*
+src/data_folder/*
+.env
+__pycache__
+src/OutputFolder/output_all/*.png
+src/OutputFolder/output_all/*.gpkg
