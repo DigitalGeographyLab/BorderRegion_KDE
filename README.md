@@ -3,7 +3,7 @@ This program imports, handles, organizes, and visualizes data about mobility pat
 The primary analysis is a Kernel Density Estimation (KDE) of mobility across country borders. Several variations and calculations to the program are further discussed in the *Usage* part. This program can be helpful in understanding transnational locations as well as provide insight into movement trends.
 
 ## Installation
-**This program has dummy data which you can try if it works as it should on your computer. For that, I have added a *.env* file and *OutputFolder* so that everything is set up for you to test the program with the dummy data. The dummy data works only currently for the KDE plot and not for the H3 to geo conversion. To test the program with the dummy data, follow the installation steps below, everything else should have been already taken care of.**
+**This program has dummy data which you can try if it works as it should on your computer. For that, I have added a *.env* file and *OutputFolder* so that everything is set up for you to test the program with the dummy data. The dummy data works only currently for the KDE plot and not for the H3 to geo conversion. The distance is also already calculated in the dummy data, so no need to calculate the distance between points. To test the program with the dummy data, follow the installation steps below, everything else should have been already taken care of.**
 
 To install this program you need to 
 
@@ -32,26 +32,58 @@ python index.py
 ```
 python3 index.py
 ```
-   
-
 ## Usage
 
-This section will give a brief explanation of what files the program consists of and what they do as well as guidance of how the program can be used. 
+This section gives an overview of the program and gives guidance on where and how the user should start the program as well as an illustration of the program structure.
+
+### How and where to start
+Preparation and first steps (1-2) involve the usage of your data so if you use dummy data skip the preparation and jump to step 3. 
+
+#### Preparation
+##### What is needed when using own data and not dummy data
+|   Data   | Data type |   Columns   |
+|:---------|:---------|:---------|
+|Point Data with H3 coordinates|.parquet/.csv|:---------|
+|Point Data with Lat/Lon|.csv|:---------|
+|Country border data|.gpkg|:---------|
+
+- In the .env file, the paths and the filenames are defined so if the user has different filenames or paths, then change to those in the .env file.
+   
+#### Preprocess & KDE
+1. If the user's input data consists of H3 coordinates, then the user should first **Preprocess** the data so that those coordinates are converted to lat and long coordinates. The converted coordinates and the previous columns are saved to a DataFrame which is saved to a .csv file. **N.B** *The program accepts input data that is either in .parquet or .csv file format.*
+2. After the user has converted the H3 coordinates or if the user already has a dataset with lat and long coordinates, then the user can calculate the distance (geodesic, haversine, great circle) between the starting and ending point on each row in the dataset, this will create a new column in the DataFrame which also is saved to a new .csv file. **N.B ** *.csv file format is the only format that the program accepts* when loading data for the distance calculation.
+3. When the user has done preprocessing (if that was needed), then the user does not have to redo the Preprocessing again as long as the created .csv files are saved and a path to them is found in the .env file as these files will be used in the KDE visualization. 
+4. Now the user can proceed to the KDE visualization by selecting KDE in the first input question, this will print additional input questions about the KDE (questions below and example inputs):
+   - **Do you want to do a KDE for a specific country pair or all country pairs (pair/all):** *pair*
+   - **What Bandwidth in meters do you want to use (40km as 40000):** *20000*
+   - **Which kernel type do you want to use (gaussian/epanechnikov):** *epanechnikov*
+   - **Which metric type do you want to use (euclidean/haversine):** *haversine*
+   - **Do you want to limit movement distances (yes/no):** *yes*
+   - **How many kilometres radius do you want to limit the movement (200km as 200):** *300*
+ 
+   - **Add first country abbreviation:** *ES*
+   - **Add second country abbreviation:** *PT*
+5. The values in the parentheses, are examples or options of what the input can be. The **slash(/)** between the values indicates on an option between those two values and **as** indicates that any value is accepted but it has to be written like that so e.g if the user wants a bandwidth (search radius) of 20km, then it has to be written in meters as 20000.
+6. After the input questions are answered, the program starts and shows plots, the first two plots are each country's own KDE plot and the third one is a combined KDE.
+The following files are saved in the output folder:
+   - Combined KDE in .png format
+   - Combined KDE in .gpkg format
+   - Each country's KDE in .gpkg format (this is used by the program)
  
 ### The options and order of things
+
+Below is an illustration of how the src folder is organized and a short description of what each *class* does for clarity. The blue boxes indicate a class (Python file) and the green boxes indicate a folder. All folders and files are not in this illustration as they function as support code for these classes.
+
 ![Program](Documentation/images/BorderRegion_kde_graph.png)
 
 
-##### TO BE UPDATED SOON!
 
-### How and where to start
- 
-##### TO BE UPDATED SOON!
 
-#### N.B. *There might be some minor changes that the user has to do in the code in case the user has input data with different column names or filenames. In case the user already has a dataset with geographical coordinates, it can jump straight to the distance calculation and onward* 
+
+
 
 ### Referencing
 If you use this script in your research or project, or develop it further, please refer back to us using this:
 
-Söderholm, M., Aagesen, H., Väisänen, T., & Järv, O (2023) BoderRegion_KDE
+Söderholm, M., Aagesen, H., Väisänen, T., & Järv, O (2023) BorderRegion_KDE
 
