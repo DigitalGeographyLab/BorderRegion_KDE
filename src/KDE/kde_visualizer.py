@@ -366,9 +366,9 @@ class KdeVisualizer():
 
         if self.type_of_kde_analysis == 'all':
 
-            #plt.ion()
+            plt.ion()
             plt.show()
-            #time.sleep(3)
+            time.sleep(3)
             plt.close()
     
 
