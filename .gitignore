@@ -10,3 +10,4 @@ src/data_folder/*
 __pycache__
 src/OutputFolder/output_all/*.png
 src/OutputFolder/output_all/*.gpkg
+src/MakerOfDummyData/*
