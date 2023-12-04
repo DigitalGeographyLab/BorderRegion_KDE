@@ -39,6 +39,8 @@ python3 index.py
 This section will give a brief explanation of what files the program consists of and what they do as well as guidance of how the program can be used. 
  
 ### The options and order of things
+![Program](Documentation/images/BorderRegion_kde_graph.png)
+
 
 ##### TO BE UPDATED SOON!
 
