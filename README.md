@@ -3,24 +3,29 @@ This program imports, handles, organizes, and visualizes data about mobility pat
 The primary analysis is a Kernel Density Estimation (KDE) of mobility across country borders. Several variations and calculations to the program are further discussed in the *Usage* part. This program can be helpful in understanding transnational locations as well as provide insight into movement trends.
 
 ## Installation
-##### This program has dummy data which you can try if it works as it should on your computer. For that, I have added a *.env* file and *OutputFolder* so that everything is set up for you to test the program with the dummy data. The dummy data only works currently for the KDE plot and not for the H3 to geo conversion. To test the program with the dummy data, follow the installation steps below, everything else should have been already taken care of. 
+**This program has dummy data which you can try if it works as it should on your computer. For that, I have added a *.env* file and *OutputFolder* so that everything is set up for you to test the program with the dummy data. The dummy data works only currently for the KDE plot and not for the H3 to geo conversion. To test the program with the dummy data, follow the installation steps below, everything else should have been already taken care of.**
 
 To install this program you need to 
-1. Navigate to a proper directory in your command line.
-2. Clone the GitHub repository with the command below (This option uses SSH protection. More about setting up SSH [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)):
+
+**1. Navigate to a proper directory in your command line.**
+
+**2. Clone the GitHub repository with the command below:**
 ```
 git clone https://github.com/DigitalGeographyLab/BorderRegion_KDE.git
 ```
-3. Install Poetry if you don't have it installed already. More about installing Poetry [here](https://python-poetry.org/docs/)
-4. Use Poetry to install all project dependencies with the command below, make sure you're inside the git repository in your command line:
+**3. Install Poetry if you don't have it installed already. More about installing Poetry [here](https://python-poetry.org/docs/)**
+
+**4. Navigate into the BorderRegion_KDE folder.**
+
+**5. Use Poetry to install all project dependencies with the command below, make sure you're inside the git repository in your command line:**
 ```
 poetry install
 ```
-5. Use Poetry to active the virtual environment with this command:
+**6. Use Poetry to active the virtual environment with this command:**
 ```
 poetry shell
 ```
-6. After everything is installed and setup, direct to the src file and execute the program with one of the following commands:
+**7. After everything is installed and set upped, navigate to the *src* file and execute the program with one of the following commands:**
 ```
 python index.py 
 ```
