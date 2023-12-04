@@ -168,10 +168,13 @@ class KdeQuestions:
         Returns:
             list: A list containing country abbreviations for pair visualization.
         """
+        if self.type_of_kde_analysis == 'pair':
 
-        country1 = self.__pair_kde_country('first')
-        country2 = self.__pair_kde_country('second')
-        return [country1, country2]
+            country1 = self.__pair_kde_country('first')
+            country2 = self.__pair_kde_country('second')
+            return [country1, country2]
+        else:
+            None
 
 
     def __pair_kde_country(self, country_number):

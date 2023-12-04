@@ -2,6 +2,7 @@ from CountryCodes.lst_of_cntr_od import lst_of_cntr_od
 from KDE.kde_visualizer import KdeVisualizer
 from KDE.kde_country_organizer import CountryOrganizer
 from KDE.kde_data import KDEdata
+import sys
 
 class KdeHandler():
 
@@ -111,6 +112,8 @@ class KdeHandler():
         kde_analysis = KdeVisualizer(self.country_1_coordinates, self.country_2_coordinates, country_od, country1_id, country2_id, self.type_of_kde_analysis, self.analysis_bandwidth, self.kernel_type, self.metric_type, self.extent_of_kde_analysis, self.movement_limit, self.program_epsg, self.border_data)
         print(' ')
         print('Program has finished.')
+        if self.type_of_kde_analysis == 'pair':
+            sys.exit()
 
 
     def __multi_kde_analysis(self, country_list):
@@ -137,6 +140,7 @@ class KdeHandler():
                 failed_countries_list.append(country_od)
                 print(f'{country_od} added to list')
         print(failed_countries_list)
+        sys.exit()
 
 
     def __get_cntr_od(self, country_pair):
