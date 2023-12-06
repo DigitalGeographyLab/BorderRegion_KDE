@@ -148,7 +148,7 @@ class KdeQuestions:
 
             if self.extent_of_kde_analysis == 'yes':
 
-                movement_limit = input('How many kilometres raidus do you want to limit the movement (200km as 200): ')
+                movement_limit = input('How many kilometres radius do you want to limit the movement (200km as 200): ')
                 print(' ')
 
                 return movement_limit

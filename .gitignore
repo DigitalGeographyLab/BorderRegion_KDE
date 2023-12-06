@@ -11,3 +11,4 @@ __pycache__
 src/OutputFolder/output_all/*.png
 src/OutputFolder/output_all/*.gpkg
 src/MakerOfDummyData/*
+*.drawio
