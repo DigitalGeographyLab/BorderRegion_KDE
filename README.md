@@ -3,7 +3,7 @@ This program imports, handles, organizes, and visualizes data about mobility pat
 The primary analysis is a Kernel Density Estimation (KDE) of mobility across country borders. Several variations and calculations to the program are further discussed in the *Usage* part. This program can be helpful in understanding transnational locations as well as provide insight into movement trends.
 
 ## Installation
-**This program has dummy data which you can try if it works as it should on your computer. For that, I have added a *.env* file and *OutputFolder* so that everything is set up for you to test the program with the dummy data. The dummy data works only currently for the KDE plot and not for the H3 to geo conversion. The distance is also already calculated in the dummy data, so no need to calculate the distance between points. To test the program with the dummy data, follow the installation steps below, everything else should have been already taken care of.**
+**This program has dummy data which you can try if it works as it should on your computer. Before you can run the program, a .env file has to be created (instructions below), but other than that, everything else is set up for you to test the program with the dummy data. The dummy data works only currently for the KDE plot and not for the H3 to geo conversion. The distance is also already calculated in the dummy data, so no need to calculate the distance between points. To test the program with the dummy data, follow the installation steps below, everything else should have been already taken care of.**
 
 To install this program you need to 
 
@@ -47,7 +47,16 @@ Preparation and first steps (1-2) involve the usage of your data so if you use d
 |Point Data with Lat/Lon|.csv|:---------|
 |Country border data|.gpkg|:---------|
 
-- In the .env file, the paths and the filenames are defined so if the user has different filenames or paths, then change to those in the .env file.
+- In the root directory, a .env file has to be created. In the .env file, the paths and filenames are defined so that the program finds the files. When using the dummy data, the user can copy and paste the text below into the .env file:
+```
+DATA_FOLDER_PATH = './DummyData/'
+OUTPUT_FOLDER_PATH = './OutputFolder/'
+OUTPUT_ALL = 'output_all/'
+FILE_NAME_FOR_KDE_ANALYIS = 'pt_es_dummy_data_with_Haversine_distance.csv'
+FILE_NAME_FOR_GPKG = 'pt_es_dummy_data_borders.gpkg'
+```
+
+- If the user is using their own data or file structure, then they should add those paths and filenames to the .env file. 
    
 #### Preprocess & KDE
 1. If the user's input data consists of H3 coordinates, then the user should first **Preprocess** the data so that those coordinates are converted to lat and long coordinates. The converted coordinates and the previous columns are saved to a DataFrame which is saved to a .csv file. **N.B** *The program accepts input data that is either in .parquet or .csv file format.*
