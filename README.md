@@ -37,15 +37,8 @@ python3 index.py
 This section gives an overview of the program and gives guidance on where and how the user should start the program as well as an illustration of the program structure.
 
 ### How and where to start
-Preparation and first steps (1-2) involve the usage of your data so if you use dummy data skip the preparation and jump to step 3. 
 
-#### Preparation
-##### What is needed when using own data and not dummy data
-|   Data   | Data type |   Columns   |
-|:---------|:---------|:---------|
-|Point Data with H3 coordinates|.parquet/.csv|:---------|
-|Point Data with Lat/Lon|.csv|:---------|
-|Country border data|.gpkg|:---------|
+#### Preparation with dummy data
 
 - In the root directory, a .env file has to be created. In the .env file, the paths and filenames are defined so that the program finds the files. When using the dummy data, the user can copy and paste the text below into the .env file:
 ```
@@ -55,10 +48,21 @@ OUTPUT_ALL = 'output_all/'
 FILE_NAME_FOR_KDE_ANALYIS = 'pt_es_dummy_data_with_Haversine_distance.csv'
 FILE_NAME_FOR_GPKG = 'pt_es_dummy_data_borders.gpkg'
 ```
+#### Preparation with own data
 
-- If the user is using their own data or file structure, then they should add those paths and filenames to the .env file. 
+- In the root directory, a .env file has to be created. When the user is using their own data or file structure, they need to add those paths and filenames to the .env file.
+- A table of the kind of data that is needed for the program when using own data:
+
+|   Data   | Data type |   Columns   |
+|:---------|:---------|:---------|
+|Point Data with H3 coordinates|.parquet/.csv|:---------|
+|Point Data with Lat/Lon|.csv|:---------|
+|Country border data|.gpkg|:---------|
+
+
    
 #### Preprocess & KDE
+N.B when using dummy data, jump straight to step 4 as the above steps are already done to the dummy data.
 1. If the user's input data consists of H3 coordinates, then the user should first **Preprocess** the data so that those coordinates are converted to lat and long coordinates. The converted coordinates and the previous columns are saved to a DataFrame which is saved to a .csv file. **N.B** *The program accepts input data that is either in .parquet or .csv file format.*
 2. After the user has converted the H3 coordinates or if the user already has a dataset with lat and long coordinates, then the user can calculate the distance (geodesic, haversine, great circle) between the starting and ending point on each row in the dataset, this will create a new column in the DataFrame which also is saved to a new .csv file. **N.B ** *.csv file format is the only format that the program accepts* when loading data for the distance calculation.
 3. When the user has done preprocessing (if that was needed), then the user does not have to redo the Preprocessing again as long as the created .csv files are saved and a path to them is found in the .env file as these files will be used in the KDE visualization. 
