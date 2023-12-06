@@ -2,6 +2,8 @@
 This program imports, handles, organizes, and visualizes data about mobility patterns over European national borders.
 The primary analysis is a Kernel Density Estimation (KDE) of mobility across country borders. Several variations and calculations to the program are further discussed in the *Usage* part. This program can be helpful in understanding transnational locations as well as provide insight into movement trends.
 
+In this program, the user can aside from visualizing mobility data, also convert H3 coordinates to Lat and Lon coordinates as well as calculate the distance between the starting and ending point of a mobility. This distance can then be used in the KDE to determine the range of mobility that is considered in the KDE. 
+
 ## Installation
 This program has **dummy data** which you can try if it works as it should on your computer. Before you can run the program, a **.env file has to be created** (instructions below), but other than that, everything else is set up for you to test the program with the dummy data. The dummy data works only currently for the KDE plot and not for the H3 to geo conversion. The distance is also already calculated in the dummy data, so no need to calculate the distance between points. To test the program with the dummy data, follow the installation steps below and create a .env file, everything else should have been already taken care of.
 
