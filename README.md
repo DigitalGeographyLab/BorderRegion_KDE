@@ -64,7 +64,7 @@ FILE_NAME_FOR_GPKG = 'pt_es_dummy_data_borders.gpkg'
 
    
 #### Preprocess & KDE
-N.B when using dummy data, jump straight to step 4 as the above steps are already done to the dummy data.
+**N.B** when using dummy data, jump straight to step 4 as the above steps are already done to the dummy data.
 1. If the user's input data consists of H3 coordinates, then the user should first **Preprocess** the data so that those coordinates are converted to lat and long coordinates. The converted coordinates and the previous columns are saved to a DataFrame which is saved to a .csv file. **N.B** *The program accepts input data that is either in .parquet or .csv file format.*
 2. After the user has converted the H3 coordinates or if the user already has a dataset with lat and long coordinates, then the user can calculate the distance (geodesic, haversine, great circle) between the starting and ending point on each row in the dataset, this will create a new column in the DataFrame which also is saved to a new .csv file. **N.B ** *.csv file format is the only format that the program accepts* when loading data for the distance calculation.
 3. When the user has done preprocessing (if that was needed), then the user does not have to redo the Preprocessing again as long as the created .csv files are saved and a path to them is found in the .env file as these files will be used in the KDE visualization. 
@@ -84,7 +84,13 @@ The following files are saved in the output folder:
    - Combined KDE in .png format
    - Combined KDE in .gpkg format
    - Each country's KDE in .gpkg format (this is used by the program)
- 
+
+**N.B** Choosing **euclidean** as the metric type can result in errors in some cases while **epanechnikov** always works.  
+
+### StandaloneKDE
+- The Standalone KDE consists of a function that is run by itself and there the user can add a list of country pairs and different parameters which are iterated through. This is useful if the user wants to test different combinations of parameters and how they affect the KDE.
+
+
 ### Illustration of the program structure
 
 Below is an illustration of how the src folder is organized and a short description of what each *class* does for clarity. The blue boxes indicate a class (Python file) and the green boxes indicate a folder. All folders and files are not in this illustration as they function as support code for these classes.
