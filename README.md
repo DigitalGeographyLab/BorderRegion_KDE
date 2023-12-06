@@ -3,9 +3,9 @@ This program imports, handles, organizes, and visualizes data about mobility pat
 The primary analysis is a Kernel Density Estimation (KDE) of mobility across country borders. Several variations and calculations to the program are further discussed in the *Usage* part. This program can be helpful in understanding transnational locations as well as provide insight into movement trends.
 
 ## Installation
-**This program has dummy data which you can try if it works as it should on your computer. Before you can run the program, a .env file has to be created (instructions below), but other than that, everything else is set up for you to test the program with the dummy data. The dummy data works only currently for the KDE plot and not for the H3 to geo conversion. The distance is also already calculated in the dummy data, so no need to calculate the distance between points. To test the program with the dummy data, follow the installation steps below, everything else should have been already taken care of.**
+This program has **dummy data** which you can try if it works as it should on your computer. Before you can run the program, a **.env file has to be created** (instructions below), but other than that, everything else is set up for you to test the program with the dummy data. The dummy data works only currently for the KDE plot and not for the H3 to geo conversion. The distance is also already calculated in the dummy data, so no need to calculate the distance between points. To test the program with the dummy data, follow the installation steps below and create a .env file, everything else should have been already taken care of.
 
-To install this program you need to 
+### To install this program you need to 
 
 **1. Navigate to a proper directory in your command line.**
 
@@ -83,7 +83,7 @@ The following files are saved in the output folder:
    - Combined KDE in .gpkg format
    - Each country's KDE in .gpkg format (this is used by the program)
  
-### The options and order of things
+### Illustration of the program structure
 
 Below is an illustration of how the src folder is organized and a short description of what each *class* does for clarity. The blue boxes indicate a class (Python file) and the green boxes indicate a folder. All folders and files are not in this illustration as they function as support code for these classes.
 
