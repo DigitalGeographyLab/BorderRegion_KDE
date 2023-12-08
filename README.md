@@ -108,3 +108,6 @@ If you use this script in your research or project, or develop it further, pleas
 
 Söderholm, M., Aagesen, H., Väisänen, T., & Järv, O (2023) BorderRegion_KDE
 
+### Acknowledgement
+
+### Disclaimer
