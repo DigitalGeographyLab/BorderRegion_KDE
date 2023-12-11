@@ -54,6 +54,7 @@ FILE_NAME_FOR_GPKG = 'pt_es_dummy_data_borders.gpkg'
 
 - In the root directory, a .env file has to be created. When the user is using their own data or file structure, they need to add those paths and filenames to the .env file.
 - A table of the kind of data that is needed for the program when using own data:
+- Within the CountryCodes folder there is the lst_of_cntr_od file which contains a list of country pairs, change the content of this list if your country pairs are some others. 
 
 |   Data   | Data type |   Columns   |
 |:---------|:---------|:---------|
