@@ -57,6 +57,8 @@ class DistanceMeasure:
 
         filepath = f'{data_folder_path}{file_name_for_input_distance_calculator}'
         df = pd.read_csv(filepath, sep = ',')
+        print(len(df))
+        print(df.head())
 
         return df
     
