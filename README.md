@@ -31,13 +31,9 @@ poetry install
 ```
 poetry shell
 ```
-**7. After everything is installed and set upped, navigate to the *src* file and execute the program with one of the following commands:**
-```
-python index.py 
-```
-```
-python3 index.py
-```
+**7. After everything is installed and set upped, navigate to the *src* file and create a .env file in the root directory (instructions below)**
+
+
 ## Usage
 
 This section gives an overview of the program and gives guidance on where and how the user should start the program as well as an illustration of the program structure.
