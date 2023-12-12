@@ -69,7 +69,7 @@ class Ui():
 
 # Initialize UI states and set up the UI with the parameters: id, info, title = None, abbreviation = None, question=None
 state1 = UiState(1, 'In this program you can calculate Kernel Density Estimations for mobilites and preprocess data for a Kernel Density Estimation calculation', question = 'What do you want to do? ')
-state2 = UiState(2, 'There are various different analyses that you can do:', 'Calculate KDE', 'KDE', 'Which would you like to perform? ')
+state2 = UiState(2, 'There are various different parameters that you can use', 'Calculate KDE', 'KDE', 'Which would you like to perform? ')
 state3 = UiState(3, 'Which of the data preprocessing tools do you want to use', 'Preprocess data for KDE', 'Preprocess', 'What would you like to do? ')
 state4 = UiState(4, '1. Convert H3 coordinates to lat/lon and filter data', 'Convert H3 coordinates to lat/lon and filter data', 'H3 to geo')
 state5 = UiState(5, '3. Calculate the distances between points in various ways', 'Calculate the distances between points', 'DIST')

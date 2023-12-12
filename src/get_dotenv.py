@@ -7,11 +7,13 @@ load_dotenv()
 # File paths for data folders, geopackages, and output folders
 data_folder_path = os.environ.get("DATA_FOLDER_PATH")
 
-geopackages_path = os.environ.get("GEOPACKAGES_PATH")
-
 output_folder_path = os.environ.get("OUTPUT_FOLDER_PATH")
 
 output_all_path = os.environ.get('OUTPUT_ALL')
+
+output_merged_all_path = os.environ.get('OUTPUT_MERGED_ALL')
+
+
 
 
 # File names for specific analysis or processing steps

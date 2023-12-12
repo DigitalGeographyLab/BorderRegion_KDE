@@ -232,6 +232,7 @@ class KdeVisualizer():
         country_id = country.iloc[0]['country_name']
 
         filename = f'geo_file_for_country_{country_id}_in_country_pair_{self.cntr_od}_{self.analysis_bandwidth}BW_{self.movement_limit}movelimit_{self.kernel_type}_{self.metric_type}.gpkg'
+        #file_path = f'{output_folder_path}{output_all_path}{filename}' 
         file_path = f'{output_folder_path}{output_all_path}{filename}' 
         gdf_of_polygons.to_file(file_path, driver='GPKG')
 

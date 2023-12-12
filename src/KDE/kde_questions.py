@@ -71,7 +71,7 @@ class KdeQuestions:
         """
 
         while True:
-            analysis_bandwidth = input('What Bandwidth in meters do you want to use (40km as 40000): ')
+            analysis_bandwidth = input('What Bandwidth (i.e. search radius) in meters do you want to use (40km as 40000): ')
 
             return analysis_bandwidth
         
@@ -87,7 +87,7 @@ class KdeQuestions:
 
         while True:
 
-            kernel_type = input('Which kernel type do you want to use (gaussian/epanechnikov): ')
+            kernel_type = input('Which kernel function do you want to use (gaussian/epanechnikov): ')
 
             if kernel_type in ('gaussian', 'epanechnikov'):
                 return kernel_type
@@ -148,7 +148,7 @@ class KdeQuestions:
 
             if self.extent_of_kde_analysis == 'yes':
 
-                movement_limit = input('How many kilometres radius do you want to limit the movement (200km as 200): ')
+                movement_limit = input('What is the maximum distance in kilometres you want to limit movement vectors (200km as 200): ')
                 print(' ')
 
                 return movement_limit
