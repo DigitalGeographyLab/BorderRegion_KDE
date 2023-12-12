@@ -118,7 +118,7 @@ Also in BibTeX:
 ### Acknowledgement
 This work was supported by the Academy of Finland under Grant 331549 as a part of the [BORDERSPACE](https://www.helsinki.fi/en/researchgroups/digital-geography-lab/projects/borderspace) project.
 
-We also want to thank Martin Fleischmann for helping us in solving how to calculate geographically correct KDEs (see Disclaimer). 
+We also want to thank Martin Fleischmann for helping us to solve how to calculate geographically correct KDEs (see Disclaimer). 
 
 ### Disclaimer
 
