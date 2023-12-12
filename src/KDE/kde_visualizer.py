@@ -320,6 +320,7 @@ class KdeVisualizer():
         self.reversed_map = orig_map.reversed() 
         self.merged_layers.plot(column = 'level', cmap=self.reversed_map, alpha=0.8, ax = self.ax)
         self.ax.set_title(f'{self.full_country_name1} & {self.full_country_name2}')
+        self.ax.axis('off')
 
         self.__legend()
 
