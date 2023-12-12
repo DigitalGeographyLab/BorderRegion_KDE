@@ -1,8 +1,12 @@
 # BorderRegion_KDE
-This program imports, handles, organizes, and visualizes data about mobility patterns over European national borders.
-The primary analysis is a Kernel Density Estimation (KDE) of mobility across country borders. Several variations and calculations to the program are further discussed in the *Usage* part. This program can be helpful in understanding transnational locations as well as provide insight into movement trends.
+BorderRegion_KDE is a program to calculate a geographical Kernel Density Estimation (KDE) polygons derived from human mobility across country borders to map functional cross-border regions (e.g. [Aagesen et al. 2023](https://doi.org/10.1080/04353684.2022.2101135)). This program helps to reveal functioning border regions, and transnational spaces in general, from the perspective of people as KDE indicates the probability density estimation for cross-border mobility from both side of the border.
 
-In this program, the user can aside from visualizing mobility data, also convert H3 coordinates to Lat and Lon coordinates as well as calculate the distance between the starting and ending point of a mobility. This distance can then be used in the KDE visualization to determine the range of mobility that is considered in the KDE. 
+This program imports unique cross-border movement vectors, processes movement vector data to calculate KDE levels, and geographically visualize KDEs in case of European countries. Yet, the program is generic and can be used globally once input data is updated, accordingly. The program has various parameter options for calculating KDEs, see the Usage section for further details. 
+
+In addition, BorderRegion_KDE program has few pre-processing features such as 1) converting H3 coordinates to Lat and Lon coordinates and 2) calculating the distance between start (origin) and end (destination) point of a mobility vector for defining what mobility vectors by distance are included for KDE calculation.
+
+*The work is conducted as a part of the [BORDERSPACE](https://www.helsinki.fi/en/researchgroups/digital-geography-lab/projects/borderspace) – Tracing Interactions and Mobilities Beyond State Borders: Towards New Transnational Spaces project at the [Digital Geography Lab](https://www2.helsinki.fi/en/researchgroups/digital-geography-lab), University of Helsinki.*
+ 
 
 ## Installation
 This program has **dummy data** which you can try if it works as it should on your computer. Before you can run the program, a **.env file has to be created** (instructions below) from where the **get_dotenv** file retrieves the paths and filenames for the program. Other than that, everything else is set up for you to test the program with the dummy data. The dummy data works currently only for the KDE plot and not for the H3 to geo conversion. The distance is also already calculated in the dummy data, so no need to calculate the distance between points. To test the program with the dummy data, follow the installation steps below and create a .env file, everything else should have been already taken care of.
@@ -71,11 +75,11 @@ FILE_NAME_FOR_GPKG = 'pt_es_dummy_data_borders.gpkg'
 3. When the user has done preprocessing (if that was needed), then the user does not have to redo the Preprocessing again as long as the created .csv files are saved and the paths to them are found in the .env file as these files will be used in the KDE visualization. 
 4. Now the user can proceed to the KDE visualization by selecting KDE in the first input question, this will print additional input questions about the KDE (questions below and example inputs):
    - **Do you want to do a KDE for a specific country pair or all country pairs (pair/all):** *pair*
-   - **What Bandwidth in meters do you want to use (40km as 40000):** *20000*
-   - **Which kernel type do you want to use (gaussian/epanechnikov):** *epanechnikov*
+   - **What Bandwidth (i.e. search radius) in meters do you want to use (40km as 40000):** *20000*
+   - **Which kernel function do you want to use (gaussian/epanechnikov):** *epanechnikov*
    - **Which metric type do you want to use (euclidean/haversine):** *haversine*
    - **Do you want to limit movement distances (yes/no):** *yes*
-   - **How many kilometres radius do you want to limit the movement (200km as 200):** *300*
+   - **What is the maximum distance in kilometres you want to limit movement vectors (200km as 200):** *300*
  
    - **Add first country abbreviation:** *ES*
    - **Add second country abbreviation:** *PT*
@@ -105,10 +109,14 @@ Below is an illustration of how the src folder is organized and a short descript
 
 
 ### Referencing
-If you use this script in your research or project, or develop it further, please refer back to us using this:
+If you use this program in your research or project, or develop it further, please refer back to us, as follows:
 
-Söderholm, M., Aagesen, H., Väisänen, T., & Järv, O (2023) BorderRegion_KDE
+Söderholm, M., Aagesen, H., Väisänen, T., & Järv, O. (2023) BorderRegion_KDE. DOI:
+Also in BibTeX:
 
 ### Acknowledgement
+This work was supported by the Academy of Finland under Grant 331549 as a part of the [BORDERSPACE](https://www.helsinki.fi/en/researchgroups/digital-geography-lab/projects/borderspace) project.
 
 ### Disclaimer
+
+Väiski, can you briefly explain why we didn’t use KDE tool from Seaborne library?
