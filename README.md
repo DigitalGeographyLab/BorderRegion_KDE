@@ -90,7 +90,7 @@ The following files are saved in the output folder:
    - Combined KDE in .gpkg format
    - Each country's KDE in .gpkg format (this is used by the program)
 
-**N.B** Choosing **euclidean** as the metric type can result in errors in some cases while **epanechnikov** always works.  
+**N.B** Choosing **haversine** as the metric type can result in errors in some cases while **euclidean** always works.  
 
 ### StandaloneKDE
 - The Standalone KDE consists of a function that is run by itself and there the user can add a list of country pairs and different parameters which are iterated through. This is useful if the user wants to test different combinations of parameters and how they affect the KDE.
