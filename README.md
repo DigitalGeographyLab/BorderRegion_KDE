@@ -57,8 +57,9 @@ FILE_NAME_FOR_GPKG = 'pt_es_dummy_data_borders.gpkg'
 #### Preparation with own data
 
 - In the root directory, a .env file has to be created. When the user is using their own data or file structure, they need to add those paths and filenames to the .env file.
-- A table of the kind of data that is needed for the program when using own data:
-- Within the CountryCodes folder there is the lst_of_cntr_od file which contains a list of country pairs, change the content of this list if your country pairs are some others. 
+- Within the CountryCodes folder there is the lst_of_cntr_od file which contains a list of country pairs, change the content of this list if your country pairs are some others.
+- The program's default EPSG is 3035 (ETRS89-extended / LAEA Europe). To change the EPSG, navigate to the kde_handler file in the KDE folder, and change the program_epsg parameter to your desired EPSG.
+- A table of the kind of data that is needed for the program when using your own data: 
 
 |   Data   | Data type |   Columns   |
 |:---------|:---------|:---------|
