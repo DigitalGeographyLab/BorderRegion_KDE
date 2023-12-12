@@ -1,9 +1,9 @@
 # BorderRegion_KDE
-BorderRegion_KDE is a program to calculate a geographical Kernel Density Estimation (KDE) polygons derived from human mobility across country borders to map functional cross-border regions (e.g. [Aagesen et al. 2023](https://doi.org/10.1080/04353684.2022.2101135)). This program helps to reveal functioning border regions, and transnational spaces in general, from the perspective of people as KDE indicates the probability density estimation for cross-border mobility from both side of the border.
+BorderRegion_KDE is a program to calculate geographical Kernel Density Estimation (KDE) polygons derived from human mobility across country borders to map functional cross-border regions (e.g. [Aagesen et al. 2023](https://doi.org/10.1080/04353684.2022.2101135)). This program helps to reveal functioning border regions, and transnational spaces in general, from the perspective of people as the KDE indicates the probability density estimation for cross-border mobility from both sides of the border.
 
-This program imports unique cross-border movement vectors, processes movement vector data to calculate KDE levels, and geographically visualize KDEs in case of European countries. Yet, the program is generic and can be used globally once input data is updated, accordingly. The program has various parameter options for calculating KDEs, see the Usage section for further details. 
+This program imports unique cross-border movement vectors, processes movement vector data to calculate KDE levels, and geographically visualize KDEs in the case of European countries. Yet, the program is generic and can be used globally once input data is updated, accordingly. The program has various parameter options for calculating KDEs, see the [Usage section](#usage) for further details. 
 
-In addition, BorderRegion_KDE program has few pre-processing features such as 1) converting H3 coordinates to Lat and Lon coordinates and 2) calculating the distance between start (origin) and end (destination) point of a mobility vector for defining what mobility vectors by distance are included for KDE calculation.
+In addition, the BorderRegion_KDE program has a few pre-processing features such as 1) converting H3 coordinates to Lat and Lon coordinates and 2) calculating the distance between start (origin) and end (destination) points of a mobility vector for defining what mobility vectors by distance are included in KDE calculation.
 
 *The work is conducted as a part of the [BORDERSPACE](https://www.helsinki.fi/en/researchgroups/digital-geography-lab/projects/borderspace) – Tracing Interactions and Mobilities Beyond State Borders: Towards New Transnational Spaces project at the [Digital Geography Lab](https://www2.helsinki.fi/en/researchgroups/digital-geography-lab), University of Helsinki.*
  
@@ -27,11 +27,11 @@ git clone https://github.com/DigitalGeographyLab/BorderRegion_KDE.git
 ```
 poetry install
 ```
-**6. Use Poetry to active the virtual environment with this command:**
+**6. Use Poetry to activate the virtual environment with this command:**
 ```
 poetry shell
 ```
-**7. After everything is installed and set upped, navigate to the *src* file and execute the program with one of the following commands:**
+**7. After everything is installed and set up, navigate to the *src* file and execute the program with one of the following commands:**
 ```
 python index.py 
 ```
@@ -57,8 +57,8 @@ FILE_NAME_FOR_GPKG = 'pt_es_dummy_data_borders.gpkg'
 #### Preparation with own data
 
 - In the root directory, a .env file has to be created. When the user is using their own data or file structure, they need to add those paths and filenames to the .env file.
-- Within the CountryCodes folder there is the lst_of_cntr_od file which contains a list of country pairs, change the content of this list if your country pairs are some others.
-- The program's default EPSG is 3035 (ETRS89-extended / LAEA Europe). To change the EPSG, navigate to the kde_handler file in the KDE folder, and change the program_epsg parameter to your desired EPSG.
+- Within the CountryCodes folder there is the `lst_of_cntr_od` file which contains a list of country pairs, change the content of this list if your country pairs are some others.
+- The program's default EPSG is 3035 (ETRS89-extended / LAEA Europe). To change the EPSG, navigate to the `kde_handler` file in the KDE folder, and change the `program_epsg` parameter to your desired EPSG.
 - A table of the kind of data that is needed for the program when using your own data: 
 
 |   Data   | Data type |   Columns   |
@@ -72,7 +72,7 @@ FILE_NAME_FOR_GPKG = 'pt_es_dummy_data_borders.gpkg'
 #### Preprocess & KDE
 **N.B** when using dummy data, jump straight to step 4 as the above steps are already done to the dummy data.
 1. If the user's input data consists of H3 coordinates, then the user should first **Preprocess** the data so that those coordinates are converted to lat and long coordinates. The converted coordinates and the previous columns are saved to a DataFrame which is saved to a .csv file. **N.B** *The program accepts input data that is either in .parquet or .csv file format.*
-2. After the user has converted the H3 coordinates or if the user already has a dataset with lat and long coordinates, then the user can calculate the distance (geodesic, haversine, great circle) between the starting and ending point on each row in the dataset, this will create a new column in the DataFrame which also is saved to a new .csv file. **N.B** *.csv file format is the only format that the program accepts when loading data for the distance calculation.*
+2. After the user has converted the H3 coordinates or if the user already has a dataset with lat and long coordinates, then the user can calculate the distance (geodesic, haversine, great circle) between the start and end points on each row in the dataset, this will create a new column in the DataFrame which also is saved to a new .csv file. **N.B** *.csv file format is the only format that the program accepts when loading data for the distance calculation.*
 3. When the user has done preprocessing (if that was needed), then the user does not have to redo the Preprocessing again as long as the created .csv files are saved and the paths to them are found in the .env file as these files will be used in the KDE visualization. 
 4. Now the user can proceed to the KDE visualization by selecting KDE in the first input question, this will print additional input questions about the KDE (questions below and example inputs):
    - **Do you want to do a KDE for a specific country pair or all country pairs (pair/all):** *pair*
