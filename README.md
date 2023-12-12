@@ -112,10 +112,13 @@ Below is an illustration of how the src folder is organized and a short descript
 If you use this program in your research or project, or develop it further, please refer back to us, as follows:
 
 Söderholm, M., Aagesen, H., Väisänen, T., & Järv, O. (2023) BorderRegion_KDE. DOI:
+
 Also in BibTeX:
 
 ### Acknowledgement
 This work was supported by the Academy of Finland under Grant 331549 as a part of the [BORDERSPACE](https://www.helsinki.fi/en/researchgroups/digital-geography-lab/projects/borderspace) project.
+
+We also want to thank Martin Fleischmann for helping us in solving how to calculate geographically correct KDEs (see Disclaimer). 
 
 ### Disclaimer
 
