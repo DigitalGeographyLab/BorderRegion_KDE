@@ -112,6 +112,18 @@ Söderholm, M., Aagesen, H., Väisänen, T., & Järv, O. (2023) BorderRegion_KDE
 
 Also in BibTeX:
 
+```
+@misc{Soderholm2023,
+  title = {BorderRegion_KDE},
+  shorttitle = {{{DigitalGeographyLab}}/BorderRegion_KDEr},
+  author = {S{\"o}derholm, Michaela and Aagesen, H{\aa}vard and V{\"a}is{\"a}nen, Tuomas and J{\"a}rv, Olle},
+  year = {2023},
+  doi = {DOI_COMES_HERE},
+  copyright = {MICHAELA_OLLE_CHECK_WHICH_LICENSE},
+  howpublished = {Zenodo}
+}
+```
+
 ### Acknowledgement
 This work was supported by the Academy of Finland under Grant 331549 as a part of the [BORDERSPACE](https://www.helsinki.fi/en/researchgroups/digital-geography-lab/projects/borderspace) project.
 
