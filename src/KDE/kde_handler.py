@@ -2,7 +2,6 @@ from CountryCodes.lst_of_cntr_od import lst_of_cntr_od
 from KDE.kde_visualizer import KdeVisualizer
 from KDE.kde_country_organizer import CountryOrganizer
 from KDE.kde_data import KDEdata
-from KDE.kde_all_country_pairs import KdeAllCountryPairs
 import sys
 
 class KdeHandler():
@@ -142,7 +141,6 @@ class KdeHandler():
                 failed_countries_list.append(country_od)
                 print(f'{country_od} added to list')
         print(failed_countries_list)
-        merged_kde = KdeAllCountryPairs(self.analysis_bandwidth, self.movement_limit, self.kernel_type, self.metric_type, self.program_epsg, self.border_data, failed_countries_list)
         sys.exit()
 
 

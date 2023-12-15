@@ -316,18 +316,21 @@ class KdeVisualizer():
         region1.plot(ax=self.ax, alpha = 0.1, facecolor = 'grey', edgecolor = 'black')
         region2.plot(ax=self.ax, alpha = 0.1, facecolor = 'grey', edgecolor = 'black')
 
-        orig_map=plt.cm.get_cmap('viridis') 
+        orig_map=plt.cm.get_cmap('inferno') 
         self.reversed_map = orig_map.reversed() 
         self.merged_layers.plot(column = 'level', cmap=self.reversed_map, alpha=0.8, ax = self.ax)
         self.ax.set_title(f'{self.full_country_name1} & {self.full_country_name2}')
         self.ax.axis('off')
+        region1.plot(ax=self.ax, alpha = 0.4, facecolor = 'none', edgecolor = 'black')
+        region2.plot(ax=self.ax, alpha = 0.4, facecolor = 'none', edgecolor = 'black')
+
 
         self.__legend()
 
-        contextily.add_basemap(self.ax, crs = f'EPSG:{self.program_epsg}', source = contextily.providers.CartoDB.PositronNoLabels)
+        contextily.add_basemap(self.ax, crs = f'EPSG:{self.program_epsg}', source = contextily.providers.CartoDB.DarkMatterNoLabels)
     
         filename = f'merged_{self.cntr_od}_{self.analysis_bandwidth}BW_{self.movement_limit}movelimit_{self.kernel_type}_{self.metric_type}.gpkg'
-        plt.savefig(f'{output_folder_path}{output_all_path}{self.cntr_od}_{self.analysis_bandwidth}BW_{self.movement_limit}movelimit_{self.kernel_type}_{self.metric_type}.png', dpi = 300)
+        plt.savefig(f'{output_folder_path}{output_all_path}{self.cntr_od}_{self.analysis_bandwidth}BW_{self.movement_limit}movelimit_{self.kernel_type}_{self.metric_type}_darkmatter_inferno.png', bbox_inches='tight', dpi = 300)
         file_path = f'{output_folder_path}{output_all_path}{filename}'
             
         self.__auto_show_plot()
