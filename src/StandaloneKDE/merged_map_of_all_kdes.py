@@ -15,7 +15,7 @@ from get_dotenv import output_merged_all_path
 from get_dotenv import file_name_for_gpkg
 
 
-class KdeAllCountryPairs():
+class MergedMapOfAllKDEs():
     """
     Class to create a combined KDE map for all country pairs.
 
@@ -155,6 +155,6 @@ class KdeAllCountryPairs():
         self.merged_done_gdf.to_file(file_path, driver='GPKG')
     
 
-kde_of_all_country_pairs = KdeAllCountryPairs('25000', '200', 'gaussian', 'euclidean', 3035, 20, ['AD_ES', 'AD_FR', 'AL_IT', 'FR_MC'])
+kde_of_all_country_pairs = MergedMapOfAllKDEs('25000', '200', 'gaussian', 'euclidean', 3035, 20, ['AD_ES', 'AD_FR', 'AL_IT', 'FR_MC'])
 #['AD_ES', 'AD_FR', 'AL_IT', 'FR_MC']
 #['AL_IT', 'FR_MC']
