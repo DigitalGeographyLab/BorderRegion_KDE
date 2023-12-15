@@ -86,6 +86,7 @@ class MergedMapOfAllKDEs():
         filepath = f'{data_folder_path}{file_name_for_gpkg}'
         self.border_data = gpd.read_file(filepath)
         self.border_data = self.border_data.to_crs(epsg = self.program_epsg)
+        print(self.border_data.head())
 
     
     def merge_and_dissolve(self):
@@ -139,7 +140,7 @@ class MergedMapOfAllKDEs():
         self.fig, self.ax = plt.subplots(figsize=(10, 8))
 
         self.border_data.plot(ax = self.ax, alpha = 0.0, edgecolor = 'white', linewidth=0.3, facecolor='grey')
-        self.merged_done_gdf.plot(ax = self.ax, alpha = 1, cmap = 'inferno', linewidth=0.05)
+        self.merged_done_gdf.plot(ax = self.ax, alpha = 0.8, cmap = 'inferno', linewidth=0.05)
         self.border_data.plot(ax = self.ax, alpha = 0.8, edgecolor = 'black', linewidth=0.3, facecolor='none')
 
         self.ax.set_title('Cross-border Mobility in Europe')
@@ -147,7 +148,7 @@ class MergedMapOfAllKDEs():
         #self.ax.add_artist(ScaleBar(1, location='lower right', color="white", box_color="black", box_alpha=0.5))
         contextily.add_basemap(ax = self.ax, crs = f'EPSG:{self.program_epsg}', source = contextily.providers.CartoDB.DarkMatterNoLabels)
 
-        plt.savefig(f'{output_folder_path}{output_merged_all_path}all_countries_merged_kde_{self.analysis_bandwidth}BW_{self.movement_limit}movelimit_{self.kernel_type}_{self.metric_type}_darkmatter_inferno_lux.png', bbox_inches='tight', dpi = 300)   
+        plt.savefig(f'{output_folder_path}{output_merged_all_path}all_countries_merged_kde_{self.analysis_bandwidth}BW_{self.movement_limit}movelimit_{self.kernel_type}_{self.metric_type}.png', bbox_inches='tight', dpi = 300)   
         plt.show()
 
         filename = f'all_countries_merged_kde_{self.analysis_bandwidth}BW_{self.movement_limit}movelimit_{self.kernel_type}_{self.metric_type}.gpkg'
@@ -155,6 +156,6 @@ class MergedMapOfAllKDEs():
         self.merged_done_gdf.to_file(file_path, driver='GPKG')
     
 
-kde_of_all_country_pairs = MergedMapOfAllKDEs('25000', '200', 'gaussian', 'euclidean', 3035, 20, ['AD_ES', 'AD_FR', 'AL_IT', 'FR_MC'])
+kde_of_all_country_pairs = MergedMapOfAllKDEs('25000', '200', 'gaussian', 'euclidean', 3035, 1, ['AD_ES', 'AD_FR', 'AL_IT', 'FR_MC'])
 #['AD_ES', 'AD_FR', 'AL_IT', 'FR_MC']
 #['AL_IT', 'FR_MC']
