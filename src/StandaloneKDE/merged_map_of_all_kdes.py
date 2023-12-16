@@ -6,6 +6,7 @@ from shapely.geometry import MultiPolygon
 from shapely.ops import unary_union
 from matplotlib_scalebar.scalebar import ScaleBar
 import sys
+import matplotlib.patches as mpatches
 
 from CountryCodes.lst_of_cntr_od import lst_of_cntr_od
 from get_dotenv import data_folder_path
@@ -53,6 +54,7 @@ class MergedMapOfAllKDEs():
         self.program_epsg = program_epsg
         self.amount_of_levels = amount_of_levels
         self.failed_list = failed_list
+        self.lux_list = ['BE_LU', 'FR_LU', 'DE_LU']
 
         self.all_kde = {}
         self.merged_kde_gdf = gpd.GeoDataFrame()
@@ -69,6 +71,7 @@ class MergedMapOfAllKDEs():
         For each country in lst_of_cntr_od, checks if it's in the failed list,
         and if not, reads the corresponding KDE data file and stores it in the all_kde dictionary.
         """
+        #for self.country_od in self.lux_list:
         for self.country_od in lst_of_cntr_od:
             if self.country_od in self.failed_list:
                 print(f'{self.country_od} is in the failed list')
@@ -86,7 +89,7 @@ class MergedMapOfAllKDEs():
         filepath = f'{data_folder_path}{file_name_for_gpkg}'
         self.border_data = gpd.read_file(filepath)
         self.border_data = self.border_data.to_crs(epsg = self.program_epsg)
-        print(self.border_data.head())
+        #self.border_data = self.border_data.loc[self.border_data['CNTR_OD'].isin(['DE', 'BE', 'FR', 'LU'])]
 
     
     def merge_and_dissolve(self):
@@ -106,7 +109,7 @@ class MergedMapOfAllKDEs():
         
         if self.amount_of_levels == 10:
             # If 10 levels are specified, merge levels into 10 predefined values.
-            merged_levels = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+            merged_levels = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0][::-1]
             for merged_level in merged_levels:
                 # Select levels up to the current merged level.
                 selected_levels = [level for level in self.dissolved_kde_gdf.index if level <= merged_level]
@@ -126,9 +129,9 @@ class MergedMapOfAllKDEs():
                 # Append the original level and dissolved geometry to the lists.
                 levels.append(level)
                 geometries.append(dissolved_geometry)
-        else:
-            print('Incorrect amount of levels, 10 or 20 levels')
-            sys.exit()
+        #else:
+            #print('Incorrect amount of levels, 10 or 20 levels')
+            #sys.exit()
         
         self.merged_done_gdf = gpd.GeoDataFrame({'level': levels, 'geometry': geometries})
         self.merged_done_gdf = self.merged_done_gdf.sort_values(by='level', ascending=False)
@@ -139,23 +142,73 @@ class MergedMapOfAllKDEs():
         """
         self.fig, self.ax = plt.subplots(figsize=(10, 8))
 
-        self.border_data.plot(ax = self.ax, alpha = 0.0, edgecolor = 'white', linewidth=0.3, facecolor='grey')
+        self.xlim, self.ylim = self.__get_boundaries()
+
+        plt.xlim(self.xlim)
+        plt.ylim(self.ylim)
+
+        self.border_data.plot(ax = self.ax, alpha = 0.1, edgecolor = 'black', linewidth=0.3, facecolor='grey')
         self.merged_done_gdf.plot(ax = self.ax, alpha = 0.8, cmap = 'inferno', linewidth=0.05)
         self.border_data.plot(ax = self.ax, alpha = 0.8, edgecolor = 'black', linewidth=0.3, facecolor='none')
 
         self.ax.set_title('Cross-border Mobility in Europe')
         self.ax.axis('off')
-        #self.ax.add_artist(ScaleBar(1, location='lower right', color="white", box_color="black", box_alpha=0.5))
-        contextily.add_basemap(ax = self.ax, crs = f'EPSG:{self.program_epsg}', source = contextily.providers.CartoDB.DarkMatterNoLabels)
+        self.ax.add_artist(ScaleBar(dx = 1, location='lower right', color='#D4CDA9', box_color='black', box_alpha=0, units='km'))
 
-        plt.savefig(f'{output_folder_path}{output_merged_all_path}all_countries_merged_kde_{self.analysis_bandwidth}BW_{self.movement_limit}movelimit_{self.kernel_type}_{self.metric_type}.png', bbox_inches='tight', dpi = 300)   
+        contextily.add_basemap(ax = self.ax, crs = f'EPSG:{self.program_epsg}', source = contextily.providers.CartoDB.DarkMatterNoLabels)
+        
+        self.__legend()
+
+        plt.savefig(f'{output_folder_path}{output_merged_all_path}all_countries_merged_kde_{self.analysis_bandwidth}BW_{self.movement_limit}movelimit_{self.kernel_type}_{self.metric_type}_20_levels_test.png', bbox_inches='tight', dpi = 300)   
         plt.show()
 
         filename = f'all_countries_merged_kde_{self.analysis_bandwidth}BW_{self.movement_limit}movelimit_{self.kernel_type}_{self.metric_type}.gpkg'
         file_path = f'{output_folder_path}{output_merged_all_path}{filename}'
         self.merged_done_gdf.to_file(file_path, driver='GPKG')
+
+    def __get_boundaries(self):
+        """Gets the boundaries for the KDE and adds 300km to it so that the map have some marginal"""
+
+        self.bounds = self.merged_done_gdf.total_bounds
+        self.xlim = (self.bounds[0], self.bounds[2])
+        self.ylim = (self.bounds[1], self.bounds[3])
+
+        self.buffer_distance = 300000
+
+        self.xlim_modified = (self.xlim[0] - self.buffer_distance, self.xlim[1] + self.buffer_distance)
+        self.ylim_modified = (self.ylim[0] - self.buffer_distance, self.ylim[1] + self.buffer_distance)
+
+        return (self.xlim_modified, self.ylim_modified)
+
+    def __legend(self):
+
+        """Creates and displays a legend for the visualization."""
+        
+        cmap = plt.get_cmap('inferno')
+        norm = plt.Normalize(vmin=self.merged_done_gdf['level'].min(), vmax=self.merged_done_gdf['level'].max())
+
+        if self.amount_of_levels == 10:
+            self.levels = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0][::-1]
+            legend_labels = ["10%", "20%","30%", "40%","50%",
+                            "60%", "70%", "80%", "90%", "100%"]
+
+        if self.amount_of_levels == 20:
+            self.levels = [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95, 1][::-1]
+            legend_labels = ["5%", "10%", "15%", "20%", "25%", "30%", "35%", "40%", "45%", "50%",
+                            "55%", "60%", "65%", "70%", "75%", "80%", "85%", "90%", "95%"]
+
+        patches = [mpatches.Patch(color=cmap(norm(level)), label=label, linewidth=1) for level, label in zip(self.levels, legend_labels)]
+        legend = self.ax.legend(handles=patches, loc='upper right', title="Legend")
+
+        legend.get_title().set_fontsize(10)  
+        legend.get_title().set_color('#D4CDA9') 
+        for label in legend.get_texts():
+            label.set_fontsize(7)  
+            label.set_color('#D4CDA9')
+        legend.get_frame().set_alpha(0)
+
     
 
-kde_of_all_country_pairs = MergedMapOfAllKDEs('25000', '200', 'gaussian', 'euclidean', 3035, 1, ['AD_ES', 'AD_FR', 'AL_IT', 'FR_MC'])
+kde_of_all_country_pairs = MergedMapOfAllKDEs('25000', '200', 'gaussian', 'euclidean', 3035, 20, ['AD_ES', 'AD_FR', 'AL_IT', 'FR_MC'])
 #['AD_ES', 'AD_FR', 'AL_IT', 'FR_MC']
 #['AL_IT', 'FR_MC']

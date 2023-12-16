@@ -9,6 +9,7 @@ import time
 from sklearn.neighbors import KernelDensity
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 import matplotlib.patches as mpatches
+from matplotlib_scalebar.scalebar import ScaleBar
 
 from get_dotenv import output_folder_path
 from get_dotenv import output_all_path
@@ -313,17 +314,23 @@ class KdeVisualizer():
 
         fig, self.ax = plt.subplots(figsize=(10, 10))
 
+        self.xlim, self.ylim = self.__get_boundaries()
+
+        plt.xlim(self.xlim)
+        plt.ylim(self.ylim)
+
         region1.plot(ax=self.ax, alpha = 0.1, facecolor = 'grey', edgecolor = 'black')
         region2.plot(ax=self.ax, alpha = 0.1, facecolor = 'grey', edgecolor = 'black')
 
         orig_map=plt.cm.get_cmap('inferno') 
-        self.reversed_map = orig_map.reversed() 
+        self.reversed_map = orig_map.reversed()  
         self.merged_layers.plot(column = 'level', cmap=self.reversed_map, alpha=0.8, ax = self.ax)
         self.ax.set_title(f'{self.full_country_name1} & {self.full_country_name2}')
         self.ax.axis('off')
+        self.ax.add_artist(ScaleBar(dx = 1, location='lower right', color='#D4CDA9', box_color='black', box_alpha=0, units='km'))
+
         region1.plot(ax=self.ax, alpha = 0.4, facecolor = 'none', edgecolor = 'black')
         region2.plot(ax=self.ax, alpha = 0.4, facecolor = 'none', edgecolor = 'black')
-
 
         self.__legend()
 
@@ -336,6 +343,19 @@ class KdeVisualizer():
         self.__auto_show_plot()
     
         self.merged_layers.to_file(file_path, driver='GPKG')
+    
+    def __get_boundaries(self):
+
+        self.bounds = self.merged_layers.total_bounds
+        self.xlim = (self.bounds[0], self.bounds[2])
+        self.ylim = (self.bounds[1], self.bounds[3])
+
+        self.buffer_distance = 100000
+
+        self.xlim_modified = (self.xlim[0] - self.buffer_distance, self.xlim[1] + self.buffer_distance)
+        self.ylim_modified = (self.ylim[0] - self.buffer_distance, self.ylim[1] + self.buffer_distance)
+
+        return (self.xlim_modified, self.ylim_modified)
 
     
     def __legend(self):
@@ -350,10 +370,12 @@ class KdeVisualizer():
 
         patches = [mpatches.Patch(color=cmap(norm(level)), label=label) for level, label in zip(self.levels, legend_labels)]
         legend = self.ax.legend(handles=patches, loc='upper right', title="Legend")
-        legend.get_title().set_fontsize(10)  
+        legend.get_title().set_fontsize(10) 
+        legend.get_title().set_color('#D4CDA9')  
         for label in legend.get_texts():
             label.set_fontsize(7)  
-
+            label.set_color('#D4CDA9')
+        legend.get_frame().set_alpha(0)
     
     def __auto_show_plot(self):
 

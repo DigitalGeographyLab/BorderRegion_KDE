@@ -1,7 +1,7 @@
 from KDE.kde_visualizer import KdeVisualizer
-
+from KDE.kde_handler import KdeHandler
 # List of country pairs for analysis
-country_pair = [('FI_SE'), ('BE_LU'), ('ES_PT'), ('EE_FI')]
+country_pair = [('BE_LU'), ('DE_LU'), ('FR_LU')]
 
 # Placeholder variables for the type, extent and metric parameters of the analysis
 type_of_analysis_placeholder = 'pair'
@@ -13,9 +13,9 @@ failed_parameters_list = []
 print(failed_parameters_list)
 
 # Define the parameter options for the KDE analysis to iterate through
-kernel_types = ["epanechnikov", "gaussian"] # Kernel types
-bandwidth_thresholds = [15000]  # Bandwidth thresholds in kilometers
-movement_limits = [200, 300]  # Movement limits in kilometers
+kernel_types = ["epanechnikov"] # Kernel types
+bandwidth_thresholds = [40000]  # Bandwidth thresholds in kilometers
+movement_limits = [200]  # Movement limits in kilometers
 
 
 def run_kde_visualization():
