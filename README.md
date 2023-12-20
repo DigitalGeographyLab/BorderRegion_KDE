@@ -147,7 +147,7 @@ Also in BibTeX:
   author = {S{\"o}derholm, Michaela and Aagesen, H{\aa}vard and V{\"a}is{\"a}nen, Tuomas and J{\"a}rv, Olle},
   year = {2023},
   doi = {DOI_COMES_HERE},
-  copyright = {MICHAELA_OLLE_CHECK_WHICH_LICENSE},
+  copyright = {GPLv3},
   howpublished = {Zenodo}
 }
 ```
