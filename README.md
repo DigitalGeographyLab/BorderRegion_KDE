@@ -60,7 +60,8 @@ FILE_NAME_FOR_GPKG = 'pt_es_dummy_data_borders.gpkg'
 - The program's default EPSG is 3035 (ETRS89-extended / LAEA Europe). To change the EPSG, navigate to the kde_handler file in the KDE folder, and change the program_epsg parameter to your desired EPSG.
 - Below you can find what data is needed for the program when using your own data:
 
-If you have data with H3 coordinates, then a table with at least these columns is needed (start from step 1.), in the Preprocess folder, in the *read_in_data_for_preprocess.py file*, you can set/change the columns to load:
+If you have data with H3 coordinates, then a table with at least these columns is needed (start from step 1.)
+- In the Preprocess folder, in the *read_in_data_for_preprocess.py file*, you can set/change the columns to load:
 
 |   CNTR_ID_start  | CNTR_ID_end |   h3_grid_res10_start  |   h3_grid_res10_end   |
 |:---------|:---------|:---------|:---------|
