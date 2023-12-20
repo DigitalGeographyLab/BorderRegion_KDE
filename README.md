@@ -118,8 +118,10 @@ TypeError: `keep_geom_type` does not support None.
 ```
 
 ### StandaloneKDE
-- The standaloneKDE.py consists of a function that is run by itself and there the user can add a list of country pairs and different parameters which are iterated through. This is useful if the user wants to test different combinations of parameters and how they affect the KDE.
-- The merged_map_of_all_kdes.py consists of a stand-alone class that creates a merged map of all country pair KDEs.
+- The merged_map_of_all_kdes.py consists of a stand-alone class that creates a merged map of all country pair KDEs, it is run from the src folder by:
+```
+python -m StandaloneKDE.merged_map_of_all_kdes
+```
 
 
 ### Illustration of the program structure
