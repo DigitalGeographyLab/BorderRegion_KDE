@@ -131,6 +131,10 @@ Below is an illustration of how the src folder is organized and a short descript
 
 ### Output
 
+Below is an example of what can be done with BorderRegion_KDE. The combined map of Europe is done by the MergedMapOfAllKDEs class in the StandaloneKDE folder while the France - Luxembourg map is the base output of the program.
+
+| ![Output](Documentation/images/EuropeKDE.png) | ![Output](Documentation/images/FR_LU.png) |
+|-----------------------------------------------|--------------------------------------------|
 
 
 
