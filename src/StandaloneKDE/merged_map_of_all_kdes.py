@@ -129,12 +129,11 @@ class MergedMapOfAllKDEs():
                 # Append the original level and dissolved geometry to the lists.
                 levels.append(level)
                 geometries.append(dissolved_geometry)
-        #else:
-            #print('Incorrect amount of levels, 10 or 20 levels')
-            #sys.exit()
         
         self.merged_done_gdf = gpd.GeoDataFrame({'level': levels, 'geometry': geometries})
         self.merged_done_gdf = self.merged_done_gdf.sort_values(by='level', ascending=False)
+        self.merged_done_gdf = self.merged_done_gdf.set_crs(epsg = self.program_epsg)
+        
     
     def plot_and_save(self):
         """
@@ -148,18 +147,17 @@ class MergedMapOfAllKDEs():
         plt.ylim(self.ylim)
 
         self.border_data.plot(ax = self.ax, alpha = 0.1, edgecolor = 'black', linewidth=0.3, facecolor='grey')
-        self.merged_done_gdf.plot(ax = self.ax, alpha = 0.8, cmap = 'inferno', linewidth=0.05)
+        self.merged_done_gdf.plot(ax = self.ax, alpha = 0.7, cmap = 'inferno', linewidth=0.05)
         self.border_data.plot(ax = self.ax, alpha = 0.8, edgecolor = 'black', linewidth=0.3, facecolor='none')
 
         self.ax.set_title('Cross-border Mobility in Europe')
         self.ax.axis('off')
-        self.ax.add_artist(ScaleBar(dx = 1, location='lower right', color='#D4CDA9', box_color='black', box_alpha=0, units='km'))
 
         contextily.add_basemap(ax = self.ax, crs = f'EPSG:{self.program_epsg}', source = contextily.providers.CartoDB.DarkMatterNoLabels)
         
         self.__legend()
 
-        plt.savefig(f'{output_folder_path}{output_merged_all_path}all_countries_merged_kde_{self.analysis_bandwidth}BW_{self.movement_limit}movelimit_{self.kernel_type}_{self.metric_type}_20_levels_test.png', bbox_inches='tight', dpi = 300)   
+        plt.savefig(f'{output_folder_path}{output_merged_all_path}all_countries_merged_kde_{self.analysis_bandwidth}BW_{self.movement_limit}movelimit_{self.kernel_type}_{self.metric_type}_europe.png', bbox_inches='tight', dpi = 300)   
         plt.show()
 
         filename = f'all_countries_merged_kde_{self.analysis_bandwidth}BW_{self.movement_limit}movelimit_{self.kernel_type}_{self.metric_type}.gpkg'
@@ -205,10 +203,7 @@ class MergedMapOfAllKDEs():
         for label in legend.get_texts():
             label.set_fontsize(7)  
             label.set_color('#D4CDA9')
-        legend.get_frame().set_alpha(0)
-
+        legend.get_frame().set_alpha(0.1)
     
 
-kde_of_all_country_pairs = MergedMapOfAllKDEs('25000', '200', 'gaussian', 'euclidean', 3035, 20, ['AD_ES', 'AD_FR', 'AL_IT', 'FR_MC'])
-#['AD_ES', 'AD_FR', 'AL_IT', 'FR_MC']
-#['AL_IT', 'FR_MC']
+kde_of_all_country_pairs = MergedMapOfAllKDEs('25000', '200', 'gaussian', 'euclidean', 3035, 10, ['AD_ES', 'AD_FR', 'AL_IT', 'FR_MC'])

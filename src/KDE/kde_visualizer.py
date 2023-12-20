@@ -327,7 +327,6 @@ class KdeVisualizer():
         self.merged_layers.plot(column = 'level', cmap=self.reversed_map, alpha=0.8, ax = self.ax)
         self.ax.set_title(f'{self.full_country_name1} & {self.full_country_name2}')
         self.ax.axis('off')
-        self.ax.add_artist(ScaleBar(dx = 1, location='lower right', color='#D4CDA9', box_color='black', box_alpha=0, units='km'))
 
         region1.plot(ax=self.ax, alpha = 0.4, facecolor = 'none', edgecolor = 'black')
         region2.plot(ax=self.ax, alpha = 0.4, facecolor = 'none', edgecolor = 'black')
@@ -345,12 +344,14 @@ class KdeVisualizer():
         self.merged_layers.to_file(file_path, driver='GPKG')
     
     def __get_boundaries(self):
+        """Concatenate the two countries separte gdf to get the total bounds of the points to the plot."""
+        self.get_bounds_gdf = pd.concat([self.country_1_coordinates, self.country_2_coordinates], ignore_index=True)
 
-        self.bounds = self.merged_layers.total_bounds
+        self.bounds = self.get_bounds_gdf.total_bounds
         self.xlim = (self.bounds[0], self.bounds[2])
         self.ylim = (self.bounds[1], self.bounds[3])
 
-        self.buffer_distance = 100000
+        self.buffer_distance = 200000
 
         self.xlim_modified = (self.xlim[0] - self.buffer_distance, self.xlim[1] + self.buffer_distance)
         self.ylim_modified = (self.ylim[0] - self.buffer_distance, self.ylim[1] + self.buffer_distance)
@@ -375,7 +376,7 @@ class KdeVisualizer():
         for label in legend.get_texts():
             label.set_fontsize(7)  
             label.set_color('#D4CDA9')
-        legend.get_frame().set_alpha(0)
+        legend.get_frame().set_alpha(0.1)
     
     def __auto_show_plot(self):
 
