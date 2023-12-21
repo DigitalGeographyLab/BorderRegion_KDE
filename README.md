@@ -150,7 +150,7 @@ The output examples of the BorderRegion_KDE program are seen below. Here, the fi
 ### Referencing
 If you use this program in your research or project, or develop it further, please refer back to us, as follows:
 
-Söderholm, M., Aagesen, H., Väisänen, T., & Järv, O. (2023) BorderRegion_KDE. DOI:
+Söderholm, M., Aagesen, H., Väisänen, T., & Järv, O. (2023) BorderRegion_KDE. DOI: 10.5281/zenodo.10418690
 
 Also in BibTeX:
 
@@ -160,7 +160,7 @@ Also in BibTeX:
   shorttitle = {{{DigitalGeographyLab}}/BorderRegion_KDEr},
   author = {S{\"o}derholm, Michaela and Aagesen, H{\aa}vard and V{\"a}is{\"a}nen, Tuomas and J{\"a}rv, Olle},
   year = {2023},
-  doi = {DOI_COMES_HERE},
+  doi = {10.5281/zenodo.10418690},
   copyright = {GPLv3},
   howpublished = {Zenodo}
 }
