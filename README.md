@@ -118,6 +118,7 @@ TypeError: `keep_geom_type` does not support None.
 ```
 
 ### StandaloneKDE
+In the StandaloneKDE folder is a class that is run independently and is not part of the bigger program, but uses the output from the program to visualize a combined KDE map. 
 - The merged_map_of_all_kdes.py consists of a stand-alone class that creates a merged map of all country pair KDEs, it is run from the src folder by:
 ```
 python -m StandaloneKDE.merged_map_of_all_kdes
