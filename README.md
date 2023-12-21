@@ -133,9 +133,10 @@ Below is an illustration of how the src folder is organized and a short descript
 
 ### Output
 
-Below is an example of what can be done with BorderRegion_KDE. The combined map of Europe is done by the MergedMapOfAllKDEs class in the StandaloneKDE folder while the France - Luxembourg map is the base output of the program.
+The output examples of the BorderRegion_KDE program are seen below. Here, the first example (map on the left) shows how a functional cross border region from cross-border human mobility between the two neighbouring countries, such as France and Luxembourg, is captured as a StandaloneKDE calculation. Next, once several functional cross border regions between different country pairs are calculated, the program enables to further combine them together using the MergedMapOfAllKDEs. As an example (map on the right), we combined all functional cross border region in Europe. For these examples, we used cross-border mobility derived from geolocated Twitter data (see, e.g. [Järv et al. 2023](https://doi.org/10.1080/09654313.2022.2108312); [Aagesen et al. 2023](https://doi.org/10.1080/04353684.2022.2101135)).
 
-| ![Output](Documentation/images/EuropeKDE.png) | ![Output](Documentation/images/FR_LU.png) |
+
+| ![Output](Documentation/images/FR_LU.png) | ![Output](Documentation/images/EuropeKDE.png) |
 |-----------------------------------------------|--------------------------------------------|
 
 
