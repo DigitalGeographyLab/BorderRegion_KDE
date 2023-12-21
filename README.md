@@ -1,4 +1,8 @@
+
+
+[![DOI](https://zenodo.org/badge/726756999.svg)](https://zenodo.org/doi/10.5281/zenodo.10418690)
 <a href='https://www.gnu.org/licenses/gpl-3.0.en.html ' rel='GPLv3 Licence'><img title='GNU GPLv3 Licence' align='right' src=https://www.gnu.org/graphics/gplv3-127x51.png></a>
+
 # BorderRegion_KDE
 BorderRegion_KDE is a program to calculate a geographical Kernel Density Estimation (KDE) polygons derived from human mobility across country borders to map functional cross-border regions (e.g. [Aagesen et al. 2023](https://doi.org/10.1080/04353684.2022.2101135)). This program helps to reveal functioning border regions, and transnational spaces in general, from the perspective of people as KDE indicates the probability density estimation for cross-border mobility from both side of the border.
 
